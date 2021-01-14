@@ -91,7 +91,7 @@
               tmp[i].onclick = function () {
                 Instascan.Camera.getCameras().then(function (cameras) {
                   scanner.start(cameras[i]);
-                }
+                });
               }
               tmp[i].href = "#"
               tmp[i].appendChild(document.createTextNode(cameras[i].name))
