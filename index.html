@@ -86,13 +86,13 @@
             var tmp = new Array(cameras.length)
             var dropdown = document.getElementById('dropdown01');
             for (i = 0; i < cameras.length; i++) {
-              tmp[i] = docment.createElement('a')
+              tmp[i] = document.createElement('a')
               tmp[i].className = "dropdown-item"
               tmp[i].onclick = function () {
                 scanner.start(cameras[i]);
               }
-              tmp[i].appendChild(docment.createTextNode(cameras[i].name))
-              cameradropdown[i] = docment.createElement('li').appendChild(tmp[i]);
+              tmp[i].appendChild(document.createTextNode(cameras[i].name))
+              cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
               dropdown.appendChild(cameradropdown[i]);
             }
           } else {
