@@ -29,6 +29,35 @@
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
     <script type="text/javascript" src="/module/instascan.min.js"></script>
+    <script type="text/javascript">
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+        scanner.addListener('scan', function (content) {
+          document.getElementById('result').innerHTML = content
+        });
+        Instascan.Camera.getCameras().then(function (cameras) {
+          if (cameras.length > 0) {
+            var i;
+            var cameradropdown = new Array(cameras.length);
+            var tmp = new Array(cameras.length)
+            var dropdown = document.getElementById('dropdown-menu');
+            for (i = 0; i < cameras.length; i++) {
+              tmp[i] = document.createElement('a')
+              tmp[i].className = "dropdown-item"
+              tmp[i].onclick = function () {
+                scanner.start(cameras[i]);
+              }
+              tmp[i].href = "#"
+              tmp[i].appendChild(document.createTextNode(cameras[i].name))
+              cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
+              dropdown.appendChild(cameradropdown[i]);
+            }
+          } else {
+            console.error('No cameras found.');
+          }
+        }).catch(function (e) {
+          console.error(e);
+        });
+      </script>
   </head>
   <body>
     
@@ -74,37 +103,7 @@
     <p class="lead">Put QR code under your camera to scan.</p>
   
     <video id="preview"></video>
-      <script type="text/javascript">
-        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-        scanner.addListener('scan', function (content) {
-          document.getElementById('result').innerHTML = content
-        });
-        Instascan.Camera.getCameras().then(function (cameras) {
-          if (cameras.length > 0) {
-            var i;
-            var cameradropdown = new Array(cameras.length);
-            var tmp = new Array(cameras.length)
-            var dropdown = document.getElementById('dropdown-menu');
-            for (i = 0; i < cameras.length; i++) {
-              tmp[i] = document.createElement('a')
-              tmp[i].className = "dropdown-item"
-              tmp[i].onclick = function () {
-                Instascan.Camera.getCameras().then(function (cameras) {
-                  scanner.start(cameras[i]);
-                });
-              }
-              tmp[i].href = "#"
-              tmp[i].appendChild(document.createTextNode(cameras[i].name))
-              cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
-              dropdown.appendChild(cameradropdown[i]);
-            }
-          } else {
-            console.error('No cameras found.');
-          }
-        }).catch(function (e) {
-          console.error(e);
-        });
-      </script>
+      
     <h2>Result:</h2>
     <p id="result">result will be shown here</p>
   </div>
