@@ -91,6 +91,7 @@
               tmp[i].onclick = function () {
                 scanner.start(cameras[i]);
               }
+              tmp[i].href = "#"
               tmp[i].appendChild(document.createTextNode(cameras[i].name))
               cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
               dropdown.appendChild(cameradropdown[i]);
