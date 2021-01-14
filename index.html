@@ -34,14 +34,14 @@
     
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">QR code scanner</a>
+    <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <!-- <li class="nav-item active">
+        <li class="nav-item active">
           <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
@@ -49,20 +49,20 @@
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
+        </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Choose Camera</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown01" id="dropdown-menu">
-<!--             <li><a class="dropdown-item" href="#">Action</a></li>
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown01">
+            <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
       </ul>
-<!--       <form class="d-flex">
+      <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
+      </form>
     </div>
   </div>
 </nav>
@@ -81,23 +81,7 @@
         });
         Instascan.Camera.getCameras().then(function (cameras) {
           if (cameras.length > 0) {
-            var i;
-            var cameradropdown = new Array(cameras.length);
-            var tmp = new Array(cameras.length)
-            var dropdown = document.getElementById('dropdown-menu');
-            for (i = 0; i < cameras.length; i++) {
-              tmp[i] = document.createElement('a')
-              tmp[i].className = "dropdown-item"
-              tmp[i].onclick = function () {
-                Instascan.Camera.getCameras().then(function (cameras) {
-                  scanner.start(cameras[i]);
-                });
-              }
-              tmp[i].href = "#"
-              tmp[i].appendChild(document.createTextNode(cameras[i].name))
-              cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
-              dropdown.appendChild(cameradropdown[i]);
-            }
+            scanner.start(cameras[0]);
           } else {
             console.error('No cameras found.');
           }
@@ -106,7 +90,7 @@
         });
       </script>
     <h2>Result:</h2>
-    <p id="result">result will be shown here</p>
+    <p id="result">Put QR code under your camera to scan.</p>
   </div>
 </main><!-- /.container -->
 
