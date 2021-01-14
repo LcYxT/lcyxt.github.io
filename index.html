@@ -52,7 +52,7 @@
         </li> -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Choose Camera</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown01">
+          <ul class="dropdown-menu" aria-labelledby="dropdown01" id="dropdown-menu">
 <!--             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li> -->
@@ -84,7 +84,7 @@
             var i;
             var cameradropdown = new Array(cameras.length);
             var tmp = new Array(cameras.length)
-            var dropdown = document.getElementById('dropdown01');
+            var dropdown = document.getElementById('dropdown-menu');
             for (i = 0; i < cameras.length; i++) {
               tmp[i] = document.createElement('a')
               tmp[i].className = "dropdown-item"
