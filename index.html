@@ -23,6 +23,11 @@
           font-size: 3.5rem;
         }
       }
+
+      video {
+        width: 100%;
+        height: auto;
+      }
     </style>
 
     
@@ -105,6 +110,7 @@
             dropdown.appendChild(cameradropdown[i]);
           }
         } else {
+
           console.error('No cameras found.');
         }
       }).catch(function (e) {
