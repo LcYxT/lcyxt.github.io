@@ -96,11 +96,7 @@
             tmp[i] = document.createElement('a')
             tmp[i].className = "dropdown-item"
             tmp[i].onclick = function () {
-              Instascan.Camera.getCameras().then(function (cameras) {
-                scanner.start(cameras[i]);
-              }).catch(function (e) {
-                console.error(e);
-              })
+              scanner.start(cameras[0]);
             }
             tmp[i].href = "#"
             tmp[i].appendChild(document.createTextNode(cameras[i].name))
