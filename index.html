@@ -102,10 +102,9 @@
             tmp[i].className = "dropdown-item"
             tmp[i].onclick = (function (i) {
               return function() {
-                console.log(i);
-                scanner.start(cameras[1]);
-              }
-            }(i))
+                scanner.start(cameras[i]);
+              };
+            });
             tmp[i].href = "#"
             tmp[i].appendChild(document.createTextNode(cameras[i].name))
             cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
