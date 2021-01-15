@@ -91,18 +91,18 @@
       scanner.addListener('scan', function (content) {
         document.getElementById('result').innerHTML = content
       });
+      var dropdown = document.getElementById('dropdown-menu');
       Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
           var i;
           var cameradropdown = new Array(cameras.length);
           var tmp = new Array(cameras.length)
-          var dropdown = document.getElementById('dropdown-menu');
           for (i = 0; i < cameras.length; i++) {
             tmp[i] = document.createElement('a')
             tmp[i].className = "dropdown-item"
             tmp[i].onclick = function () {
               console.log(i)
-              scanner.start(cameras[2]);
+              scanner.start(cameras[1]);
             }
             tmp[i].href = "#"
             tmp[i].appendChild(document.createTextNode(cameras[i].name))
@@ -110,6 +110,12 @@
             dropdown.appendChild(cameradropdown[i]);
           }
         } else {
+          var no_cam_label = document.createElement('a')
+          no_cam_label.className = 'dropdown-item disabled'
+          no_cam_label.appendChild(document.createTextNode('No camera found'))
+          no_cam_label.setAttribute('aria-disabled', 'true')
+          no_cam_label.setAttribute('tabindex', '-1')
+          dropdown.appendChild(document.createElement('li').appendChild(no_cam_label));
 
           console.error('No cameras found.');
         }
