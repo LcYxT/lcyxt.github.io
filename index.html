@@ -87,8 +87,6 @@
 </main><!-- /.container -->
     <script type="text/javascript">
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false});
-    </script>
-    <script type="text/javascript">
       scanner.addListener('scan', function (content) {
         document.getElementById('result').innerHTML = content
       });
