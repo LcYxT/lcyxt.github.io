@@ -96,6 +96,7 @@
             tmp[i] = document.createElement('a')
             tmp[i].className = "dropdown-item"
             tmp[i].onclick = function () {
+              console.log(i)
               scanner.start(cameras[0]);
             }
             tmp[i].href = "#"
