@@ -12,4 +12,7 @@ document.getElementById('remove-cookie').addEventListener('click', function(){
   eraseCookie('location1')
   eraseCookie('location2')
   eraseCookie('location3')
+  for (var i = 0; i < totalLocation; i++) {
+    locationList[i].innerHTML = 'Unvisited'
+  }
 });
