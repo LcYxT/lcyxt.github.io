@@ -6,3 +6,10 @@ for (var i = 0; i < totalLocation; i++) {
   	locationList[i].innerHTML = 'Visited'
   }
 }
+
+document.getElementById('remove-cookie').addEventListener('click', function(){
+  eraseCookie_and_show('visitCount')
+  eraseCookie('location1')
+  eraseCookie('location2')
+  eraseCookie('location3')
+});

@@ -10,13 +10,6 @@ else {
   createCookie('visitCount', '1', 1);
 }
 
-document.getElementById('remove-cookie').addEventListener('click', function(){
-  eraseCookie_and_show('visitCount')
-  eraseCookie('location1')
-  eraseCookie('location2')
-  eraseCookie('location3')
-});
-
 
 let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false});
 
