@@ -1,8 +1,8 @@
 var visitCount_cookie = readCookie('visitCount');
 if (visitCount_cookie) {
   var visitCount = parseInt(visitCount_cookie, 10);
-  document.getElementById('visitCount').innerHTML = "It is your ".concat(visitCount_cookie, " visit");
   visitCount += 1;
+  document.getElementById('visitCount').innerHTML = "It is your ".concat(visitCount_cookie, " visit");
   createCookie('visitCount', visitCount.toString(), 1);
 }
 else {
