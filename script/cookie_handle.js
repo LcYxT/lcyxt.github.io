@@ -10,7 +10,7 @@ function location_cookie_handle(name){
     toast_body.setAttribute("class","toast-body")
     toast_body.appendChild(document.createTextNode("You've already visited this location!"));
     toast_div.appendChild(toast_body)
-    document.body.appendChild(toast_div)
+    document.getElementById("main-container").appendChild(toast_div)
     createCookie(name, '1', 1);
   }
   else {
@@ -23,7 +23,7 @@ function location_cookie_handle(name){
     toast_body.setAttribute("class","toast-body")
     toast_body.appendChild(document.createTextNode("Visit ".concat(name, " successful!")));
     toast_div.appendChild(toast_body)
-    document.body.appendChild(toast_div)
+    document.getElementById("main-container").appendChild(toast_div)
     createCookie(name, '1', 1);
   }
 }
