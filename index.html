@@ -98,18 +98,20 @@
           var cam_btn = new Array(cameras.length)
           for (i = 0; i < cameras.length; i++) {
             cam_btn[i] = document.createElement('a')
+            cam_btn[i].id = "cam-btn".concat(i.toString())
             cam_btn[i].className = "dropdown-item"
             cam_btn[i].onclick = (function (i) {
               return function() {
                 console.log(i)
-                cam_btn[i].className = 'dropdown-item disabled'
-                cam_btn[i].setAttribute('aria-disabled', 'true')
-                cam_btn[i].setAttribute('tabindex', '-1')
+                myself_btn = document.getElementsById('cam-btn'.concat(i.toString()))
+                myself_btn.className = 'dropdown-item disabled'
+                myself_btn.setAttribute('aria-disabled', 'true')
+                myself_btn.setAttribute('tabindex', '-1')
                 for (var j = 0; j < cameras.length; j++){
                 	if (j != i){
-	                	cam_btn[j].className = 'dropdown-item'
-	                	cam_btn[j].setAttribute('aria-disabled', 'false')
-	                	cam_btn[j].setAttribute('tabindex', '0')
+	                	document.getElementsById('cam-btn'.concat(j.toString())).className = "dropdown-item"
+	                	document.getElementsById('cam-btn'.concat(j.toString())).removeAttribute("aria-disabled")
+	                	document.getElementsById('cam-btn'.concat(j.toString())).removeAttribute("tabindex")
 	                }
                 }
                 scanner.start(cameras[i]);
