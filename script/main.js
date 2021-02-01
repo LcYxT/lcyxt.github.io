@@ -10,7 +10,7 @@ else {
   createCookie('visitCount', '1', 1);
 }
 
-getElementById('remove-cookie').addEventListener('click', function(){
+document.getElementById('remove-cookie').addEventListener('click', function(){
   eraseCookie_and_show('visitCount')
 });
 
