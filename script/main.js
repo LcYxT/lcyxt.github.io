@@ -19,6 +19,20 @@ let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),
 
 scanner.addListener('scan', function (content) {
   document.getElementById('result').innerHTML = content;
+  switch (content) {
+    case 'ae1198530b5f948fff0d613d1514d7c6':  // location1
+      window.open('location1.html', '_self');
+      break;
+    case '0a06c09b6dd9a4606b4eb6d60ab188f0':  // location2
+      window.open('location2.html', '_self');
+      break;
+    case '04bb4ea012a83380eb1525ba6e3338ae':  // location3
+      window.open('location3.html', '_self');
+      break;
+    default:
+      document.getElementById('result').innerHTML = 'It is not a correct QR code!';
+  }
+
 });
 
 var dropdown = document.getElementById('dropdown-menu');
