@@ -103,15 +103,15 @@
             cam_btn[i].onclick = (function (i) {
               return function() {
                 console.log(i)
-                myself_btn = document.getElementsById('cam-btn'.concat(i.toString()))
+                myself_btn = document.getElementById('cam-btn'.concat(i.toString()))
                 myself_btn.className = 'dropdown-item disabled'
                 myself_btn.setAttribute('aria-disabled', 'true')
                 myself_btn.setAttribute('tabindex', '-1')
                 for (var j = 0; j < cameras.length; j++){
                 	if (j != i){
-	                	document.getElementsById('cam-btn'.concat(j.toString())).className = "dropdown-item"
-	                	document.getElementsById('cam-btn'.concat(j.toString())).removeAttribute("aria-disabled")
-	                	document.getElementsById('cam-btn'.concat(j.toString())).removeAttribute("tabindex")
+	                	document.getElementById('cam-btn'.concat(j.toString())).className = "dropdown-item"
+	                	document.getElementById('cam-btn'.concat(j.toString())).removeAttribute("aria-disabled")
+	                	document.getElementById('cam-btn'.concat(j.toString())).removeAttribute("tabindex")
 	                }
                 }
                 scanner.start(cameras[i]);
