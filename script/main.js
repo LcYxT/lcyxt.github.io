@@ -2,7 +2,7 @@ var visitCount_cookie = readCookie('visitCount');
 if (visitCount_cookie) {
   var visitCount = parseInt(visitCount_cookie, 10);
   visitCount += 1;
-  document.getElementById('visitCount').innerHTML = "It is your ".concat(visitCount_cookie, " visit");
+  document.getElementById('visitCount').innerHTML = "It is your ".concat(visitCount.toString(), " visit");
   createCookie('visitCount', visitCount.toString(), 1);
 }
 else {
@@ -12,6 +12,9 @@ else {
 
 document.getElementById('remove-cookie').addEventListener('click', function(){
   eraseCookie_and_show('visitCount')
+  eraseCookie('location1')
+  eraseCookie('location2')
+  eraseCookie('location3')
 });
 
 
