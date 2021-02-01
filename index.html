@@ -117,7 +117,7 @@
             })(i);
             cam_btn[i].href = "#"
             cam_btn[i].appendChild(document.createTextNode(cameras[i].name))
-            cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
+            cameradropdown[i] = document.createElement('li').appendChild(cam_btn[i]);
             dropdown.appendChild(cameradropdown[i]);
           }
         }
