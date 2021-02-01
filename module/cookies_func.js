@@ -1,13 +1,14 @@
-function setCookie(name,value,days) {
-    var expires = "";
+function createCookie(name,value,days) {
     if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
 }
-function getCookie(name) {
+
+function readCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
@@ -17,6 +18,7 @@ function getCookie(name) {
     }
     return null;
 }
-function eraseCookie(name) {   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
 }
