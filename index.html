@@ -97,7 +97,7 @@
           var cameradropdown = new Array(cameras.length);
           var tmp = new Array(cameras.length)
           for (i = 0; i < 1; i++) {
-            tmp[i] = document.createElement('a', {class: "dropdown-item", href: "#"} )
+            tmp[i] = document.createElement('a', {'class': 'dropdown-item', 'href': '#'} )
             // tmp[i].className = "dropdown-item"
             tmp[i].onclick = (function (i) {
               return function() {
@@ -105,14 +105,14 @@
                 scanner.start(cameras[i]);
               };
             })(i);
-            tmp[i].href = "#"
+            // tmp[i].href = "#"
             tmp[i].appendChild(document.createTextNode(cameras[i].name))
             cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
             dropdown.appendChild(cameradropdown[i]);
           }
         }
       }).catch(function (e) {
-        var no_cam_label = document.createElement('a', {"class": "dropdown-item disabled", "aria-disabled": 'true', "tabindex": '-1'})
+        var no_cam_label = document.createElement('a', {'class': 'dropdown-item disabled', 'aria-disabled': 'true', 'tabindex': '-1'})
         // no_cam_label.className = 'dropdown-item disabled'
         no_cam_label.appendChild(document.createTextNode('No camera found'))
         // no_cam_label.setAttribute('aria-disabled', 'true')
