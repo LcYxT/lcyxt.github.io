@@ -27,7 +27,7 @@ function eraseCookie_and_show(name){
   var visitCount_c = readCookie(name);
   if (visitCount_c) {
     eraseCookie(name);
-    document.getElementById(name).innerHTML = "Cookie".concat(name, " erased");
+    document.getElementById(name).innerHTML = "Cookie ".concat(name, " erased");
   }
   else {
     document.getElementById(name).innerHTML = "Error: no cookie to remove";
