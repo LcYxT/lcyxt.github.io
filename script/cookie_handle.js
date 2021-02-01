@@ -25,7 +25,7 @@ function location_cookie_handle(name){
     // toast_body.appendChild(document.createTextNode("Visit ".concat(name, " successful!")));
     // toast_div.appendChild(toast_body)
     // document.getElementById("main-container").appendChild(toast_div)
-    alert("Visit ".concat(name, " successful!"))
+    alert("Visit ".concat(name, " successful!"));
     createCookie(name, '1', 1);
   }
 }
