@@ -7,61 +7,39 @@
     <title>QR code scanner</title>
 
     <!-- Bootstrap core CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      video {
-        max-width: 100%;
-        max-height: 100%;
-      }
-
-    </style>
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
-    <script type="text/javascript" src="/module/instascan.min.js"></script>
+    <script type="text/javascript" src="module/instascan.min.js"></script>
+    <script type="text/javascript" src="module/cookies_func.js"></script>
   </head>
   <body>
     
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">QR code scanner</a>
+    <a class="navbar-brand" href="https://lcyxt.github.io/">QR code scanner</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <!-- <li class="nav-item active">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="https://lcyxt.github.io/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="map">Map</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Choose Camera</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown01" id="dropdown-menu">
-<!--             <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Location</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown">
+            <li><a class="dropdown-item" href="location1">location 1</a></li>
+            <li><a class="dropdown-item" href="location2">location 2</a></li>
+            <li><a class="dropdown-item" href="location3">location 3</a></li>
           </ul>
         </li>
       </ul>
@@ -77,61 +55,22 @@
 
   <div class="starter-template text-center py-5 px-3">
     <h1>QR code scanner</h1>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Select camera</button>
+      <ul class="dropdown-menu" aria-labelledby="dropdown01" id="dropdown-menu"></ul>
+    </div>
     <p class="lead">Put QR code under your camera to scan.</p>
   
     <video id="preview"></video>
       
     <h2>Result:</h2>
     <p id="result">result will be shown here</p>
+
+    <h2>Visit Count:</h2>
+    <p id="visitCount">loading...</p>
   </div>
 </main><!-- /.container -->
-    <script type="text/javascript">
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false});
-      scanner.addListener('scan', function (content) {
-        document.getElementById('result').innerHTML = content
-      });
-      var dropdown = document.getElementById('dropdown-menu');
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-          var i;
-          var cameradropdown = new Array(cameras.length);
-          var cam_btn = new Array(cameras.length)
-          for (i = 0; i < cameras.length; i++) {
-            cam_btn[i] = document.createElement('a')
-            cam_btn[i].className = "dropdown-item"
-            cam_btn[i].onclick = (function (i) {
-              return function() {
-                console.log(i)
-                cam_btn[i].className = 'dropdown-item disabled'
-                cam_btn[i].setAttribute('aria-disabled', 'true')
-                cam_btn[i].setAttribute('tabindex', '-1')
-                for (var j = 0; j < cameras.length; j++){
-                	if (j != i){
-	                	cam_btn[j].className = 'dropdown-item disabled'
-	                	cam_btn[j].setAttribute('aria-disabled', 'false')
-	                	cam_btn[j].setAttribute('tabindex', '0')
-	                }
-                }
-                scanner.start(cameras[i]);
-              };
-            })(i);
-            cam_btn[i].href = "#"
-            cam_btn[i].appendChild(document.createTextNode(cameras[i].name))
-            cameradropdown[i] = document.createElement('li').appendChild(tmp[i]);
-            dropdown.appendChild(cameradropdown[i]);
-          }
-        }
-      }).catch(function (e) {
-        var no_cam_label = document.createElement('a')
-        no_cam_label.className = 'dropdown-item disabled'
-        no_cam_label.setAttribute('aria-disabled', 'true')
-        no_cam_label.setAttribute('tabindex', '-1')
-        no_cam_label.appendChild(document.createTextNode('No camera found'))
-        dropdown.appendChild(document.createElement('li').appendChild(no_cam_label));
-        console.error('No camera found.');
-        console.error(e);
-      });
-    </script>
+    <script type="text/javascript" src="script/main.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     
