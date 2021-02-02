@@ -4,7 +4,7 @@ for (var i = 0; i < totalLocation; i++) {
   location_num = parseInt(i, 10)+1
   locationList[i] = document.getElementById('Visited'.concat(location_num.toString()));
   if (readCookie('location'.concat(location_num.toString()))) {
-  	locationList[i].innerHTML = 'Visited'
+    locationList[i].innerHTML = 'Visited'
   }
 }
 
